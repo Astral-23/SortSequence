@@ -12,7 +12,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from data.SequenceMaker import SSD  
 from model.MLP_ReLU import Net
-from model.trainsformer import TransformerSortNet
+from model.trainsformer_MadeByChatGpt import TransformerSortNet
 from util import train_net
 
 EPOCHS = 30
