@@ -28,3 +28,7 @@ input/outputを作成するためのSSDクラスの実装
 
 ### util.py
 main.pyで用いる関数の実装
+
+
+# 使うライブラリ
+Pytorch
