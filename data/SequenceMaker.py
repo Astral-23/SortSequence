@@ -2,7 +2,7 @@ import torch
 from torch.utils.data import Dataset
 import numpy as np
 
-class SSD(Dataset):
+class RandomGenerator(Dataset):
     def __init__(self, N, L, val_range, seed, normalize_val):
         self.N, self.L = N, L
         self.vmin, self.vmax = val_range
