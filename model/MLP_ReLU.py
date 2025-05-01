@@ -2,9 +2,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-class Net(nn.Module):
+class MLP_ReLU_Net(nn.Module):
     def __init__(self, SEQ_LEN):
-        super(Net, self).__init__()
+        super(MLP_ReLU_Net, self).__init__()
 
         self.fc1 = nn.Linear(SEQ_LEN, SEQ_LEN)
         self.fc2 = nn.Linear(SEQ_LEN, SEQ_LEN)

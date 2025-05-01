@@ -1,7 +1,8 @@
 import torch
 import copy
+from torch.utils.data import Dataset, DataLoader
 
-def train_net(model, crit, opt, epochs, dl_train, dl_val):
+def train_model(model, crit, opt, epochs, dl_train, dl_val):
     best_w, best_loss = None, float('inf')
     for ep in range(epochs):
         print(f"Epoch {ep+1}/{epochs}")
@@ -23,3 +24,24 @@ def train_net(model, crit, opt, epochs, dl_train, dl_val):
                 best_loss, best_w = epoch_loss, copy.deepcopy(model.state_dict())
     model.load_state_dict(best_w)
     return model
+
+
+def excute_model(model, test_ds,  NORMALIZE_VALUE, data_num=None):
+    print("\nPredictions (denormalized):")
+    model.eval()
+    if data_num is None:
+        data_num = len(test_ds)
+        
+    with torch.no_grad():
+        for X, y in DataLoader(test_ds, batch_size=data_num, shuffle=False):
+            pred = model(X) * NORMALIZE_VALUE
+
+            X_np = (X.numpy() * NORMALIZE_VALUE).astype(int)
+            y_np = (y.numpy() * NORMALIZE_VALUE).astype(int)
+            p_np = pred.numpy()
+
+            for xi, yi, pi in zip(X_np, y_np, p_np):
+                pi_formatted = [f"{v:.2f}" for v in pi]
+                print(f"X={xi}, sorted={yi}")
+                print(f"  model: {type(model).__name__} pred: {pi_formatted}")
+            break
