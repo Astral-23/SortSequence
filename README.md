@@ -1,6 +1,8 @@
 # 概要
-input: 整数列
-output: inputをsortした整数列
+input: 整数列  
+
+output: inputをsortした整数列  
+
 を目的としたニューラルネットワークの実装
 
 
